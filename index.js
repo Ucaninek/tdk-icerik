@@ -87,7 +87,7 @@ class GenericPair {
  */
 function convertApi(json) {
     const randomWord = new GenericPair(json.kelime[0].madde, json.kelime[0].anlam);
-    const randomRule = new GenericPair(json.kural[0].adi, json.kural[0].url);
+    const randomRule = new RuleUrlPair(json.kural[0].adi, json.kural[0].url);
     const randomProverb = new GenericPair(json.atasoz[0].madde, json.atasoz[0].anlam);
     const confusedWord = new ConfusedWord(json.syyd[0].dogrukelime, json.syyd[0].yanliskelime);
     const foreignWord_ = new ForeignWord(json.yabanci.kkelime, json.yabanci.anlam, json.yabanci.kkarsilik, json.yabanci.kkoken);
@@ -100,7 +100,7 @@ function convertApi(json) {
   */
 export function getAll() {
     return new Promise(async (resolve, reject) => {
-        const res = await fetch('https://sozluk.gov.tr/icerik', {
+        const res = await fetch('https://thingproxy.freeboard.io/fetch/' + encodeURIComponent('http://sozluk.gov.tr/icerik'), {
             method: 'get',
             headers: { 'User-Agent': 'Mozilla/5.0' }
         });
