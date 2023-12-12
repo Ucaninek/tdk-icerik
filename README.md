@@ -13,6 +13,7 @@ npm install tdk-icerik
 import * as tdk from 'tdk-icerik';
 
 console.log(await tdk.getAll());
+console.log(await tdk.getRandomProverb());
 console.log(await tdk.getRandomRule());
 console.log(await tdk.getRandomWord());
 console.log(await tdk.getRandomForeignWord());
