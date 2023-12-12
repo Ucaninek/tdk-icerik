@@ -39,12 +39,14 @@ class TdkContent {
      * @param {ConfusedWord} confusedWord 
      * @param {RuleUrlPair} randomRule 
      * @param {ForeignWord} foreignWord 
+     * @param {GenericPair} proverb
      */
-    constructor(randomWord, confusedWord, randomRule, foreignWord) {
+    constructor(randomWord, confusedWord, randomRule, foreignWord, proverb) {
         this.randomWord = randomWord;
         this.confusedWord = confusedWord;
         this.randomRule = randomRule;
         this.foreignWord = foreignWord;
+        this.proverb = proverb;
     }
 }
 
@@ -80,15 +82,16 @@ class GenericPair {
 
 /**
  * takes the badly formatted api response from TDK and converts it to a nicer json object.
- * @param {object} json 
+ * @param {object} json
  * @returns a TdkContent Object.
  */
 function convertApi(json) {
     const randomWord = new GenericPair(json.kelime[0].madde, json.kelime[0].anlam);
     const randomRule = new GenericPair(json.kural[0].adi, json.kural[0].url);
+    const randomProverb = new GenericPair(json.atasoz[0].madde, json.atasoz[0].anlam);
     const confusedWord = new ConfusedWord(json.syyd[0].dogrukelime, json.syyd[0].yanliskelime);
     const foreignWord_ = new ForeignWord(json.yabanci.kkelime, json.yabanci.anlam, json.yabanci.kkarsilik, json.yabanci.kkoken);
-    return new TdkContent(randomWord, confusedWord, randomRule, foreignWord_);
+    return new TdkContent(randomWord, confusedWord, randomRule, foreignWord_, randomProverb);
 }
 
 /** 
@@ -148,5 +151,16 @@ export function getRandomConfusedWord() {
     return new Promise(async (resolve, _reject) => {
         const data = await getAll();
         resolve(data.randomWord);
+    });
+}
+
+/**
+ * 
+ * @returns {Promise<GenericPair>} a Promise that contains a random proverb and its meaning.
+ */
+export function getRandomProverb() {
+    return new Promise(async (resolve, _reject) => {
+        const data = await getAll();
+        resolve(data.proverb);
     });
 }
