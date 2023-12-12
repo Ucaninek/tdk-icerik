@@ -1,7 +1,7 @@
 {
   "name": "tdk-icerik",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.3.2",
   "description": "tdk sitesinde bulunan rastgele atasozu, deyim, yanlis yazilan kelimeler vb icerikleri ceker.",
   "main": "index.js",
   "scripts": {
