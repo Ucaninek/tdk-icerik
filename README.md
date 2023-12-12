@@ -10,7 +10,7 @@ npm install tdk-icerik
 ## Kullanim
 
 ```javascript
-import * as tdk from 'tdk-content';
+import * as tdk from 'tdk-icerik';
 
 console.log(await tdk.getAll());
 console.log(await tdk.getRandomRule());
